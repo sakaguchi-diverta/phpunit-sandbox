@@ -3,13 +3,13 @@ namespace App;
 
 class Utils
 {
-    public static function returnTrue() {
+    public static function getTrue() {
         return true;
     }
-    public static function returnFalse() {
+    public static function getFalse() {
         return false;
     }
-    public static function returnTime() {
+    public static function getTime() {
         return time();
     }
 }

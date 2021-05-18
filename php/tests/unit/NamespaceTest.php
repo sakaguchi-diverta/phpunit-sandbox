@@ -17,7 +17,7 @@ namespace Test {
     {
         public function testReturnTime()
         {
-            $time = App\Utils::returnTime();
+            $time = App\Utils::getTime();
             $this->assertEquals(1234567890, $time);
         }
     }

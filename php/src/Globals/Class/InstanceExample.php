@@ -5,7 +5,7 @@ class InstanceExample {
     public function __construct()
     {
     }
-    public function returnString()
+    public function getString()
     {
         return $this->text;
     }

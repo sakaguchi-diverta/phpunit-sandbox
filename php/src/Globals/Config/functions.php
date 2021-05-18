@@ -1,8 +1,8 @@
 <?php
 
-function returnTrue() {
+function getTrue() {
     return true;
 }
-function returnGlobalConstant() {
+function getGlobalConstant() {
     return GLOBAL_CONSTANT;
 }

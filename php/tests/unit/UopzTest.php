@@ -13,11 +13,11 @@ class UopzTest extends \PHPUnit\Framework\TestCase
     public function testGlobal()
     {
         // Override global function
-        \uopz_set_return('returnTrue', false);
-        $this->assertFalse(\returnTrue());
+        \uopz_set_return('getTrue', false);
+        $this->assertFalse(\getTrue());
 
-        \uopz_unset_return('returnTrue');
-        $this->assertTrue(\returnTrue());
+        \uopz_unset_return('getTrue');
+        $this->assertTrue(\getTrue());
 
 
         // Override specific static method of global class
@@ -34,11 +34,11 @@ class UopzTest extends \PHPUnit\Framework\TestCase
         $originalGlobalConst = GLOBAL_CONSTANT;
         \uopz_redefine('GLOBAL_CONSTANT', 'override');
         $this->assertSame('override', GLOBAL_CONSTANT);
-        $this->assertSame('override', \returnGlobalConstant());
+        $this->assertSame('override', \getGlobalConstant());
 
         \uopz_redefine('GLOBAL_CONSTANT', $originalGlobalConst);
         $this->assertSame($originalGlobalConst, GLOBAL_CONSTANT);
-        $this->assertSame($originalGlobalConst, \returnGlobalConstant());
+        $this->assertSame($originalGlobalConst, \getGlobalConstant());
 
         // Override class constant
         $originalGlobalConst = \StaticExample::TEXT;
@@ -52,24 +52,24 @@ class UopzTest extends \PHPUnit\Framework\TestCase
         // Override class instance by mock object
         uopz_set_mock('InstanceExample', new class() extends \InstanceExample {
             protected $text = 'hello';
-            public function returnString() {
+            public function getString() {
                 return "{$this->text} world";
             }
         });
-        $this->assertSame('hello world', (new \InstanceExample())->returnString());
+        $this->assertSame('hello world', (new \InstanceExample())->getString());
 
         uopz_unset_mock('InstanceExample');
-        $this->assertSame('test', (new \InstanceExample())->returnString());
+        $this->assertSame('test', (new \InstanceExample())->getString());
     }
 
     public function testAppUtils()
     {
         // Override specific static method
-        \uopz_set_return('App\Utils', 'returnTrue', false);
-        $this->assertFalse(\App\Utils::returnTrue());
+        \uopz_set_return('App\Utils', 'getTrue', false);
+        $this->assertFalse(\App\Utils::getTrue());
 
-        \uopz_unset_return('App\Utils', 'returnTrue');
-        $this->assertTrue(\App\Utils::returnTrue());
+        \uopz_unset_return('App\Utils', 'getTrue');
+        $this->assertTrue(\App\Utils::getTrue());
 
 
         // Override built-in function which is called from static method
@@ -77,9 +77,9 @@ class UopzTest extends \PHPUnit\Framework\TestCase
         \uopz_set_return('time', function() use($staticTime) {
             return $staticTime;
         }, true);
-        $this->assertSame($staticTime, \App\Utils::returnTime());
+        $this->assertSame($staticTime, \App\Utils::getTime());
 
         \uopz_unset_return('time');
-        $this->assertNotSame($staticTime, \App\Utils::returnTime());
+        $this->assertNotSame($staticTime, \App\Utils::getTime());
     }
 }

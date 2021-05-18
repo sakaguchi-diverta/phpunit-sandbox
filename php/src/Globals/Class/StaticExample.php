@@ -2,10 +2,10 @@
 
 class StaticExample {
     const TEXT = 'test';
-    public static function returnString() {
+    public static function getString() {
         return 'test';
     }
-    public static function returnTime() {
+    public static function getTime() {
         return time();
     }
     public static function intval($value) {
