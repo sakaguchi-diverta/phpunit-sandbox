@@ -15,7 +15,7 @@ namespace Test {
     use App;
     class NamespaceTest extends \PHPUnit\Framework\TestCase
     {
-        public function testReturnTime()
+        public function testNamespace()
         {
             $time = App\Utils::getTime();
             $this->assertEquals(1234567890, $time);

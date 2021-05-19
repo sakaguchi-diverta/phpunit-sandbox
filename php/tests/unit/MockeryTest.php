@@ -17,7 +17,7 @@ class MockeryTest extends \PHPUnit\Framework\TestCase
 
         $this->assertEquals('2021-01-01 00:00:00', $object->getChild()->getTimeWithYmdhisFormat());
 
-        // Make a mock having static method using alias prefix
+        // Make a static method mock using alias prefix
         // It can work only when original class will be loaded by composer autoloader.
         // If the class already loaded via require_once function, it will ends with fatal error:
         // require_once(__DIR__.'/../../src/App/Utils.php');
