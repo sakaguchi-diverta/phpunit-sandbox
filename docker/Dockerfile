@@ -3,7 +3,10 @@ FROM php:7.4-cli
 WORKDIR /tmp
 RUN echo "[Install packages]" && \
     apt-get update && \
-    apt-get install -y vim && \
+    apt-get install -y vim libpq-dev && \
+    \
+    echo "[Install postgres extension]" && \
+    docker-php-ext-install pdo_pgsql && \
     \
     echo "[Install uopz extension]" && \
     pecl install uopz && \

@@ -8,3 +8,8 @@ var_dump(
     GLOBAL_CONSTANT,
     App\Utils::getFalse()
 );
+
+$db = Database::getInstance();
+foreach ($db->query('SELECT * FROM list LIMIT 1') as $row) {
+    var_dump($row);
+}

@@ -1,8 +1,27 @@
 version: "3"
 services:
+
   php:
     build: .
     volumes:
       - ../php:/var/www/html
-      - ./data/php.ini:/usr/local/etc/php/php.ini
+      - ./data/php/php.ini:/usr/local/etc/php/php.ini
     tty: true
+    networks:
+      - app
+
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_DB: sandbox
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    volumes:
+      - "./data/postgres/init:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432"
+    networks:
+      - app
+
+networks:
+  app:
