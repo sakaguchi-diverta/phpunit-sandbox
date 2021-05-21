@@ -9,7 +9,13 @@ var_dump(
     App\Utils::getFalse()
 );
 
-$db = $GLOBALS['dbConnection'];
+$db = new Database([
+    'dbname' => POSTGRES_DB_NAME,
+    'host' => POSTGRES_DB_HOST,
+    'port' => POSTGRES_DB_PORT,
+    'user' => POSTGRES_DB_USER,
+    'password' => POSTGRES_DB_PASSWORD,
+]);
 foreach ($db->query('SELECT * FROM list LIMIT 1') as $row) {
     var_dump($row);
 }
