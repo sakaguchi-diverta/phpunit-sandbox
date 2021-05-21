@@ -9,7 +9,7 @@ var_dump(
     App\Utils::getFalse()
 );
 
-$db = Database::getInstance();
+$db = $GLOBALS['dbConnection'];
 foreach ($db->query('SELECT * FROM list LIMIT 1') as $row) {
     var_dump($row);
 }

@@ -1,24 +1,18 @@
 <?php
 
 class Database {
-    const DB_NAME     = 'sandbox';
-    const DB_HOST     = 'postgres';
-    const DB_PORT     = 5432;
-    const DB_USER     = 'admin';
-    const DB_PASSWORD = 'password';
-
     private static $connecton;
 
-    protected function __construct() {
+    protected function __construct(array $dbConfig) {
         $this->db = new PDO(
-            'pgsql:dbname='.self::DB_NAME.' host='.self::DB_HOST.' port='.self::DB_PORT,
-            self::DB_USER,
-            self::DB_PASSWORD
+            "pgsql:dbname={$dbConfig['dbname']} host={$dbConfig['host']} port={$dbConfig['port']}",
+            $dbConfig['user'],
+            $dbConfig['password']
         );
     }
 
-    public static function getInstance() {
-        self::$connecton = self::$connecton ?? new self();
+    public static function getInstance(array $dbConfig) {
+        self::$connecton = self::$connecton ?? new self($dbConfig);
         return self::$connecton;
     }
 
